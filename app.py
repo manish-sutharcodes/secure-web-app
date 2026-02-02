@@ -80,20 +80,23 @@ def admin():
 def register():
     if request.method == "POST":
         email = request.form["email"]
-        password = bcrypt.generate_password_hash(
-            request.form["password"]
-        ).decode("utf-8")
+        password = request.form["password"]
 
-        db = get_db()
-        cur = db.cursor()
-        cur.execute(
-            "INSERT INTO users (email, password) VALUES (?, ?)",
-            (email, password)
-        )
-        db.commit()
-        db.close()
+        hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
 
-        return redirect("/")
+        try:
+            db = get_db()
+            cur = db.cursor()
+            cur.execute(
+                "INSERT INTO users (email, password) VALUES (?, ?)",
+                (email, hashed_password)
+            )
+            db.commit()
+            db.close()
+            return redirect("/")
+
+        except sqlite3.IntegrityError:
+            return "Email already registered. Please login."
 
     return render_template("register.html")
 
