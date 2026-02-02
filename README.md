@@ -73,3 +73,21 @@ secure-web-app
     ├── register.html
     ├── dashboard.html
     └── admin.html
+
+ ---
+
+ ## Screenshots
+ ### Admin Dashboard
+ ![Admin Dashboard](screenshots/admin-dashboard.png)
+
+ ### Application Running (Terminal)
+ ![App Running](screenshots/app-running-terminal.png)
+
+ ### Login Page
+ ![Login Page](screenshots/login-page.png)
+
+ ### Register Page
+ ![Register Page](screenshots/register-page.png)
+
+ ### User Dashboard
+ ![User Dashboard](screenshots/user-dashboard.png)
