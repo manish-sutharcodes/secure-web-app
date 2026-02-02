@@ -41,13 +41,13 @@ def init_db():
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+        email = request.form["email"]
+        password = request.form["password"]
 
         db = get_db()
         cur = db.cursor()
         cur.execute(
-            "SELECT password FROM users WHERE email=?",
+            "SELECT password, role FROM users WHERE email=?",
             (email,)
         )
         user = cur.fetchone()
@@ -55,17 +55,16 @@ def login():
 
         if user and bcrypt.check_password_hash(user[0], password):
             session["email"] = email
+            session["role"] = user[1]
 
-            if email == "admin@secureapp.com":
-                session["role"] = "admin"
+            if user[1] == "admin":
                 return redirect("/admin")
             else:
-                session["role"] = "user"
                 return redirect("/dashboard")
 
         return render_template("login.html", error="Invalid credentials")
 
-    # 👇 GET request (normal page open)
+    # ✅ GET request
     return render_template("login.html")
 
 @app.route("/admin")
