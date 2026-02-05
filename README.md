@@ -68,7 +68,10 @@ This project was developed as part of an internship skill development program un
 ----
 
 ## How to Run the Project
-
+### Change  project directory:
+```bash
+cd secure-web-app
+```
 #### Create and activate virtual environment
 ```bash
 python -m venv venv
