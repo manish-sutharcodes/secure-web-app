@@ -5,7 +5,7 @@ Secure Web Application is a role-based authentication system developed using Pyt
 This project focuses on web security fundamentals, including secure login, password hashing, session management, and protected admin access.
 
 This project was developed as part of an internship skill development program under Team Cryptonic Area 🔐, with the objective of learning real-world backend security implementation and best practices.
----
+
 
 ## Objectives
 
